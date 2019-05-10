@@ -1,0 +1,13 @@
+[{
+  "modid": "hungertweaker",
+  "name": "HungerTweaker",
+  "description": "Food, glorious food.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://minecraft.curseforge.com/projects/hungertweaker",
+  "authorList": ["CoolSquid"],
+  "credits": "Thanks to jaredlll08, kindlich and stanhebben, who created CraftTweaker, and squeek, who created AppleCore.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["crafttweaker", "applecore"]
+}]

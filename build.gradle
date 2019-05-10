@@ -1,0 +1,131 @@
+// specify repositories and dependencies
+buildscript {
+	repositories {
+		jcenter()
+		maven {
+			name = "forge"
+			url = "http://files.minecraftforge.net/maven"
+		}
+	}
+	dependencies {
+		classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
+	}
+}
+
+// apply plugins
+apply plugin: project.mcVersion.equals("1.7.10") ? "forge" : "net.minecraftforge.gradle.forge"
+
+// set java version
+sourceCompatibility = project.javaVersion
+targetCompatibility = project.javaVersion
+
+version=getVersionFromJava(file("src/main/java/" + project.modClass))
+group=project.name.toLowerCase()
+archivesBaseName = project.name + "-" + project.mcVersion
+
+// source directories
+sourceSets {
+	main {
+		java { srcDirs = ["$projectDir/src/main/java"] }
+		resources { srcDirs = ["$projectDir/src/main/resources"] }
+	}
+}
+
+jar {
+    manifest {
+    }
+}
+
+// set forge version and mappings
+minecraft {
+	version = project.mcVersion + "-" + project.forgeVersion
+	runDir = "run"
+	mappings = project.mappings
+}
+
+repositories {
+	maven {
+		url "http://www.ryanliptak.com/maven/"
+	}
+}
+// include all files in /libs as dependencies
+dependencies {
+	compile fileTree(dir: "libs", include: "*.jar,*.zip")
+	deobfCompile "applecore:AppleCore:1.12.2-3.2.0+335.2dbab:api"
+}
+
+// update mcmod.info
+processResources
+{
+	// this will ensure that this task is redone when the versions change.
+	inputs.property "version", project.version
+	inputs.property "mcversion", project.mcVersion
+
+	// replace stuff in mcmod.info, nothing else
+	from(sourceSets.main.resources) {
+		include "mcmod.info"
+				
+		// replace version and mcversion
+		expand "version":project.version, "mcversion":project.minecraft.version
+	}
+		
+	// copy everything else, thats not the mcmod.info
+	from(sourceSets.main.resources) {
+		exclude "mcmod.info"
+	}
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier = "sources"
+	from sourceSets.main.java
+}
+
+task devJar(type: Jar) {
+	from sourceSets.main.output
+	classifier = "dev"
+}
+
+// make the dev and source jars
+artifacts {
+	if (Boolean.parseBoolean(project.makeSourceJar)) {
+		archives sourcesJar
+	}
+	if (Boolean.parseBoolean(project.makeDevJar)) {
+		archives devJar
+	}
+}
+
+String getVersionFromJava(File file) {
+
+    String release = "0";
+    String update = "0";
+    String patch = "0";
+
+    String build = System.getenv("BUILD_NUMBER") ? System.getenv("BUILD_NUMBER") : "0";
+    def outfile = "";
+    def ln = System.getProperty("line.separator")
+
+    String prefix = "public static final String VERSION = \"";
+    file.eachLine {
+        String s ->
+
+            String v = s.trim();
+
+        if (v.startsWith(prefix)) {
+
+            v = v.substring(prefix.length(), v.length() - 2);
+            String[] pts = v.split("\\.");
+
+            release = pts[0];
+            update = pts[1];
+            patch = pts[2];
+            s = s.replaceAll(".0\";", ".${build}\";");
+        }
+
+        outfile += (s + ln);
+    }
+
+    file.write(outfile);
+
+    return "$release.$update.$patch";
+}
