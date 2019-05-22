@@ -20,17 +20,17 @@ public class CTSaturatedRegen {
 
 	@ZenMethod
 	public static void setInterval(IData v) {
-		interval = Expression.of(v);
+		interval = Expression.parse(v);
 	}
 
 	@ZenMethod
 	public static void setDeltaExhaustion(IData v) {
-		deltaExhaustion = Expression.of(v);
+		deltaExhaustion = Expression.parse(v);
 	}
 
 	@ZenMethod
 	public static void setDeltaHealth(IData v) {
-		deltaHealth = Expression.of(v);
+		deltaHealth = Expression.parse(v);
 	}
 
 	@ZenMethod

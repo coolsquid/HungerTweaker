@@ -17,12 +17,12 @@ public class CTStarvation {
 
 	@ZenMethod
 	public static void setInterval(IData v) {
-		CTStarvation.interval = Expression.of(v);
+		CTStarvation.interval = Expression.parse(v);
 	}
 
 	@ZenMethod
 	public static void setDamage(IData v) {
-		CTStarvation.starveDamage = Expression.of(v);
+		CTStarvation.starveDamage = Expression.parse(v);
 	}
 
 	@ZenMethod

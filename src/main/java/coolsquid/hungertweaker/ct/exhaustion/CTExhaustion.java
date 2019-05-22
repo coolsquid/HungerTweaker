@@ -21,22 +21,22 @@ public class CTExhaustion {
 
 	@ZenMethod
 	public static void setMaxExhaustionLevel(IData v) {
-		CTExhaustion.maxExhaustionLevel = Expression.of(v);
+		CTExhaustion.maxExhaustionLevel = Expression.parse(v);
 	}
 
 	@ZenMethod
 	public static void setDeltaExhaustion(IData v) {
-		CTExhaustion.deltaExhaustion = Expression.of(v);
+		CTExhaustion.deltaExhaustion = Expression.parse(v);
 	}
 
 	@ZenMethod
 	public static void setDeltaHunger(IData v) {
-		CTExhaustion.deltaHunger = Expression.of(v);
+		CTExhaustion.deltaHunger = Expression.parse(v);
 	}
 
 	@ZenMethod
 	public static void setDeltaSaturation(IData v) {
-		CTExhaustion.deltaSaturation = Expression.of(v);
+		CTExhaustion.deltaSaturation = Expression.parse(v);
 	}
 
 	@ZenMethod

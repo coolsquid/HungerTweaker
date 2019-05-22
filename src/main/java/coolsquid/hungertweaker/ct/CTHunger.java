@@ -14,6 +14,6 @@ public class CTHunger {
 
 	@ZenMethod
 	public static void setMaxHunger(IData v) {
-		maxHunger = Expression.of(v);
+		maxHunger = Expression.parse(v);
 	}
 }

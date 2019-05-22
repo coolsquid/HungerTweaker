@@ -17,7 +17,7 @@ public class CTPeacefulRegen {
 
 	@ZenMethod
 	public static void setDeltaHealth(IData v) {
-		deltaHealth = Expression.of(v);
+		deltaHealth = Expression.parse(v);
 	}
 
 	@ZenMethod

@@ -28,7 +28,7 @@ public class CTExhaustingAction {
 
 	@ZenMethod
 	public void setDeltaExhaustion(IData v) {
-		this.deltaExhaustion = Expression.of(v);
+		this.deltaExhaustion = Expression.parse(v);
 	}
 
 	@ZenProperty
