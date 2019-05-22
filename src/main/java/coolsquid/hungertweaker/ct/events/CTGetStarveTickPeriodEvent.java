@@ -21,9 +21,9 @@ public class CTGetStarveTickPeriodEvent implements IPlayerEvent {
 
 	@ZenGetter
 	public int starveTickPeriod() {
-		return internal.starveTickPeriod;
+		return this.internal.starveTickPeriod;
 	}
-	
+
 	@ZenSetter
 	public void starveTickPeriod(int starveTickPeriod) {
 		this.internal.starveTickPeriod = starveTickPeriod;

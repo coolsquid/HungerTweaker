@@ -23,41 +23,41 @@ public class CTGetFoodValuesEvent implements IPlayerEvent {
 
 	@ZenGetter("hunger")
 	public int getHunger() {
-		return internal.foodValues.hunger;
+		return this.internal.foodValues.hunger;
 	}
 
 	@ZenSetter("hunger")
 	public void setHunger(int hunger) {
-		this.internal.foodValues = new FoodValues(hunger, getSaturationModifier());
+		this.internal.foodValues = new FoodValues(hunger, this.getSaturationModifier());
 	}
 
 	@ZenGetter("saturationModifier")
 	public float getSaturationModifier() {
-		return internal.foodValues.saturationModifier;
+		return this.internal.foodValues.saturationModifier;
 	}
 
 	@ZenSetter("saturationModifier")
 	public void setSaturationModifier(float saturationModifier) {
-		this.internal.foodValues = new FoodValues(getHunger(), saturationModifier);
+		this.internal.foodValues = new FoodValues(this.getHunger(), saturationModifier);
 	}
 
 	@ZenGetter("unmodifiedHunger")
 	public int getUnmodifiedHunger() {
-		return internal.unmodifiedFoodValues.hunger;
+		return this.internal.unmodifiedFoodValues.hunger;
 	}
 
 	@ZenGetter("unmodifiedSaturationModifier")
 	public float getUnmodifiedSaturationModifier() {
-		return internal.unmodifiedFoodValues.saturationModifier;
+		return this.internal.unmodifiedFoodValues.saturationModifier;
 	}
 
 	@ZenGetter("food")
 	public IItemStack getFood() {
-		return CraftTweakerMC.getIItemStack(internal.food);
+		return CraftTweakerMC.getIItemStack(this.internal.food);
 	}
 
 	@Override
 	public IPlayer getPlayer() {
-		return CraftTweakerMC.getIPlayer(internal.player);
+		return CraftTweakerMC.getIPlayer(this.internal.player);
 	}
 }

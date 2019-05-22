@@ -36,6 +36,6 @@ public class CTAllowSaturatedRegenEvent implements IPlayerEvent {
 
 	@Override
 	public IPlayer getPlayer() {
-		return CraftTweakerMC.getIPlayer(internal.player);
+		return CraftTweakerMC.getIPlayer(this.internal.player);
 	}
 }

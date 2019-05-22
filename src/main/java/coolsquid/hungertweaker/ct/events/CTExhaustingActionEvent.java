@@ -21,21 +21,21 @@ public class CTExhaustingActionEvent implements IPlayerEvent {
 
 	@ZenGetter
 	public String action() {
-		return event.source.name();
+		return this.event.source.name();
 	}
 
 	@ZenGetter
 	public float deltaExhaustion() {
-		return event.deltaExhaustion;
+		return this.event.deltaExhaustion;
 	}
 
 	@ZenSetter
 	public void deltaExhaustion(float deltaExhaustion) {
-		event.deltaExhaustion = deltaExhaustion;
+		this.event.deltaExhaustion = deltaExhaustion;
 	}
 
 	@Override
 	public IPlayer getPlayer() {
-		return CraftTweakerMC.getIPlayer(event.player);
+		return CraftTweakerMC.getIPlayer(this.event.player);
 	}
 }

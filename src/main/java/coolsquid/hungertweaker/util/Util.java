@@ -11,6 +11,7 @@ import crafttweaker.api.data.IData;
 public class Util {
 
 	public static boolean isNumber(IData data) {
-		return data instanceof DataByte || data instanceof DataDouble || data instanceof DataFloat || data instanceof DataInt || data instanceof DataLong || data instanceof DataShort;
+		return data instanceof DataByte || data instanceof DataDouble || data instanceof DataFloat
+				|| data instanceof DataInt || data instanceof DataLong || data instanceof DataShort;
 	}
 }

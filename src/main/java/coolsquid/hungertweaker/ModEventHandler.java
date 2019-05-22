@@ -44,7 +44,8 @@ public class ModEventHandler {
 		for (CTFoodValues v : CTFoodValues.LIST) {
 			if (v.ingredient.matches(CraftTweakerMC.getIItemStack(ie.food))) {
 				int hunger = (int) (v.hunger == null ? ie.foodValues.hunger : v.hunger.execute(ie.foodValues.hunger));
-				float saturationModifier = (float) (v.saturationModifier == null ? ie.foodValues.saturationModifier : v.saturationModifier.execute(ie.foodValues.saturationModifier));
+				float saturationModifier = (float) (v.saturationModifier == null ? ie.foodValues.saturationModifier
+						: v.saturationModifier.execute(ie.foodValues.saturationModifier));
 				ie.foodValues = new FoodValues(hunger, saturationModifier);
 			}
 		}

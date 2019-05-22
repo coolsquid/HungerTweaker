@@ -62,7 +62,7 @@ public class CTExhaustedEvent implements IPlayerEvent, IEventCancelable {
 
 	@Override
 	public boolean isCanceled() {
-		return internal.isCanceled();
+		return this.internal.isCanceled();
 	}
 
 	@Override

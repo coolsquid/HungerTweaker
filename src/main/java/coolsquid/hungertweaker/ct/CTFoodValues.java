@@ -29,12 +29,12 @@ public class CTFoodValues {
 
 	@ZenMethod
 	public void setHunger(IData v) {
-		hunger = Expression.parse(v);
+		this.hunger = Expression.parse(v);
 	}
 
 	@ZenMethod
 	public void setSaturationModifier(IData v) {
-		saturationModifier = Expression.parse(v);
+		this.saturationModifier = Expression.parse(v);
 	}
 
 	static CTFoodValues get(IIngredient i) {

@@ -65,7 +65,9 @@ public class CTExhaustingAction {
 	public static final CTExhaustingAction MOVEMENT_WALK = new CTExhaustingAction(ExhaustingActions.MOVEMENT_WALK);
 
 	@ZenProperty
-	public static final CTExhaustingAction[] ALL = { HARVEST_BLOCK, NORMAL_JUMP, SPRINTING_JUMP, ATTACK_ENTITY, DAMAGE_TAKEN, HUNGER_POTION, MOVEMENT_DIVE, MOVEMENT_SWIM, MOVEMENT_SPRINT, MOVEMENT_CROUCH, MOVEMENT_WALK };
+	public static final CTExhaustingAction[] ALL =
+			{ HARVEST_BLOCK, NORMAL_JUMP, SPRINTING_JUMP, ATTACK_ENTITY, DAMAGE_TAKEN, HUNGER_POTION, MOVEMENT_DIVE,
+					MOVEMENT_SWIM, MOVEMENT_SPRINT, MOVEMENT_CROUCH, MOVEMENT_WALK };
 
 	public static final ImmutableMap<ExhaustingActions, CTExhaustingAction> MAP;
 

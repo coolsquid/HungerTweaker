@@ -24,7 +24,8 @@ public class HungerEventManager {
 	public static final EventList<CTAllowRegenEvent> ALLOW_REGEN = new EventList<>();
 	public static final EventList<CTAllowSaturatedRegenEvent> ALLOW_SATURATED_REGEN = new EventList<>();
 	public static final EventList<CTGetRegenTickPeriodEvent> GET_REGEN_TICK_PERIOD = new EventList<>();
-	public static final EventList<CTGetSaturatedRegenTickPeriodEvent> GET_SATURATED_REGEN_TICK_PERIOD = new EventList<>();
+	public static final EventList<CTGetSaturatedRegenTickPeriodEvent> GET_SATURATED_REGEN_TICK_PERIOD =
+			new EventList<>();
 	public static final EventList<CTPeacefulRegenEvent> PEACEFUL_REGEN = new EventList<>();
 	public static final EventList<CTRegenEvent> REGEN = new EventList<>();
 	public static final EventList<CTSaturatedRegenEvent> SATURATED_REGEN = new EventList<>();
@@ -95,7 +96,8 @@ public class HungerEventManager {
 	}
 
 	@ZenMethod
-	public static IEventHandle onGetSaturatedRegenTickPeriod(IEventHandler<CTGetSaturatedRegenTickPeriodEvent> handler) {
+	public static IEventHandle onGetSaturatedRegenTickPeriod(
+			IEventHandler<CTGetSaturatedRegenTickPeriodEvent> handler) {
 		return GET_SATURATED_REGEN_TICK_PERIOD.add(handler);
 	}
 

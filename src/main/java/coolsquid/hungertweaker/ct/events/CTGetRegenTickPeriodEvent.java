@@ -21,9 +21,9 @@ public class CTGetRegenTickPeriodEvent implements IPlayerEvent {
 
 	@ZenGetter
 	public int regenTickPeriod() {
-		return internal.regenTickPeriod;
+		return this.internal.regenTickPeriod;
 	}
-	
+
 	@ZenSetter
 	public void regenTickPeriod(int regenTickPeriod) {
 		this.internal.regenTickPeriod = regenTickPeriod;

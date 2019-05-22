@@ -21,31 +21,31 @@ public class CTFoodEatenEvent implements IPlayerEvent {
 
 	@ZenGetter
 	public int hunger() {
-		return internal.foodValues.hunger;
+		return this.internal.foodValues.hunger;
 	}
 
 	@ZenGetter
 	public float saturationModifier() {
-		return internal.foodValues.saturationModifier;
+		return this.internal.foodValues.saturationModifier;
 	}
 
 	@ZenGetter
 	public int hungerAdded() {
-		return internal.hungerAdded;
+		return this.internal.hungerAdded;
 	}
 
 	@ZenGetter
 	public float saturationAdded() {
-		return internal.saturationAdded;
+		return this.internal.saturationAdded;
 	}
 
 	@ZenGetter
 	public IItemStack food() {
-		return CraftTweakerMC.getIItemStack(internal.food);
+		return CraftTweakerMC.getIItemStack(this.internal.food);
 	}
 
 	@Override
 	public IPlayer getPlayer() {
-		return CraftTweakerMC.getIPlayer(internal.player);
+		return CraftTweakerMC.getIPlayer(this.internal.player);
 	}
 }

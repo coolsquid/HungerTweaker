@@ -21,16 +21,16 @@ public class CTGetMaxExhaustionEvent implements IPlayerEvent {
 
 	@ZenGetter
 	public float maxExhaustionLevel() {
-		return internal.maxExhaustionLevel;
+		return this.internal.maxExhaustionLevel;
 	}
 
 	@ZenSetter
 	public void maxExhaustionLevel(float maxExhaustionLevel) {
-		internal.maxExhaustionLevel = maxExhaustionLevel;
+		this.internal.maxExhaustionLevel = maxExhaustionLevel;
 	}
 
 	@Override
 	public IPlayer getPlayer() {
-		return CraftTweakerMC.getIPlayer(internal.player);
+		return CraftTweakerMC.getIPlayer(this.internal.player);
 	}
 }

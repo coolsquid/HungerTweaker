@@ -22,7 +22,7 @@ public class CTSaturatedRegenEvent implements IPlayerEvent, IEventCancelable {
 
 	@ZenGetter
 	public float deltaHealth() {
-		return internal.deltaHealth;
+		return this.internal.deltaHealth;
 	}
 
 	@ZenSetter
@@ -32,7 +32,7 @@ public class CTSaturatedRegenEvent implements IPlayerEvent, IEventCancelable {
 
 	@ZenGetter
 	public float deltaExhaustion() {
-		return internal.deltaExhaustion;
+		return this.internal.deltaExhaustion;
 	}
 
 	@ZenSetter
@@ -42,16 +42,16 @@ public class CTSaturatedRegenEvent implements IPlayerEvent, IEventCancelable {
 
 	@Override
 	public boolean isCanceled() {
-		return internal.isCanceled();
+		return this.internal.isCanceled();
 	}
 
 	@Override
 	public void setCanceled(boolean canceled) {
-		internal.setCanceled(canceled);
+		this.internal.setCanceled(canceled);
 	}
 
 	@Override
 	public IPlayer getPlayer() {
-		return CraftTweakerMC.getIPlayer(internal.player);
+		return CraftTweakerMC.getIPlayer(this.internal.player);
 	}
 }
