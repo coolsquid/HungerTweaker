@@ -10,6 +10,7 @@ import coolsquid.hungertweaker.ct.events.CTAllowStarvationEvent;
 import coolsquid.hungertweaker.ct.events.CTExhaustedEvent;
 import coolsquid.hungertweaker.ct.events.CTExhaustingActionEvent;
 import coolsquid.hungertweaker.ct.events.CTFoodEatenEvent;
+import coolsquid.hungertweaker.ct.events.CTFoodStatsAdditionEvent;
 import coolsquid.hungertweaker.ct.events.CTGetFoodValuesEvent;
 import coolsquid.hungertweaker.ct.events.CTGetMaxExhaustionEvent;
 import coolsquid.hungertweaker.ct.events.CTGetMaxHungerEvent;
@@ -60,8 +61,15 @@ public class ModEventHandler {
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void on(FoodEvent.FoodEaten ie) {
-		if (HungerEventManager.GET_FOOD_VALUES.hasHandlers()) {
+		if (HungerEventManager.FOOD_EATEN.hasHandlers()) {
 			HungerEventManager.FOOD_EATEN.publish(new CTFoodEatenEvent(ie));
+		}
+	}
+
+	@SubscribeEvent(priority = EventPriority.LOWEST)
+	public void on(FoodEvent.FoodStatsAddition ie) {
+		if (HungerEventManager.FOOD_STATS_ADDITION.hasHandlers()) {
+			HungerEventManager.FOOD_STATS_ADDITION.publish(new CTFoodStatsAdditionEvent(ie));
 		}
 	}
 

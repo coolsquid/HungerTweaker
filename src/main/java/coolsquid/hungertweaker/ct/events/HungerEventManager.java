@@ -13,6 +13,7 @@ public class HungerEventManager {
 
 	public static final EventList<CTGetFoodValuesEvent> GET_FOOD_VALUES = new EventList<>();
 	public static final EventList<CTFoodEatenEvent> FOOD_EATEN = new EventList<>();
+	public static final EventList<CTFoodStatsAdditionEvent> FOOD_STATS_ADDITION = new EventList<>();
 	public static final EventList<CTAllowExhaustionEvent> ALLOW_EXHAUSTION = new EventList<>();
 	public static final EventList<CTExhaustedEvent> EXHAUSTED = new EventList<>();
 	public static final EventList<CTExhaustingActionEvent> EXHAUSTING_ACTION = new EventList<>();
@@ -38,6 +39,11 @@ public class HungerEventManager {
 	@ZenMethod
 	public static IEventHandle onFoodEaten(IEventHandler<CTFoodEatenEvent> handler) {
 		return FOOD_EATEN.add(handler);
+	}
+
+	@ZenMethod
+	public static IEventHandle onFoodStatsAddition(IEventHandler<CTFoodStatsAdditionEvent> handler) {
+		return FOOD_STATS_ADDITION.add(handler);
 	}
 
 	@ZenMethod
