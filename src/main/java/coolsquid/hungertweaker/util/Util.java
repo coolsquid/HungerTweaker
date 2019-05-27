@@ -19,7 +19,16 @@ public class Util {
 
 	public static Result parseResult(IData data) {
 		if (isNumber(data)) {
-			return Result.values()[data.asInt()];
+			int index = data.asInt();
+			switch (index) {
+			case 0:
+				return Result.DENY;
+			case 1:
+				return Result.DEFAULT;
+			case 2:
+				return Result.ALLOW;
+			}
+			throw new IllegalArgumentException("Unknown status/result: " + index);
 		} else if (data instanceof DataString) {
 			return Result.valueOf(data.asString().toUpperCase());
 		} else {
