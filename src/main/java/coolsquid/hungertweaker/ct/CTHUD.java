@@ -19,12 +19,12 @@ public class CTHUD {
 	public static void setStatus(IData v) {
 		Result newStatus = Util.parseResult(v);
 		if (newStatus != status) {
-			if (status == Result.DEFAULT) {
+			if (newStatus == Result.DEFAULT) {
 				MinecraftForge.EVENT_BUS.unregister(ClientEventHandler.class);
 			} else {
 				MinecraftForge.EVENT_BUS.register(ClientEventHandler.class);
 			}
+			status = newStatus;
 		}
-		status = newStatus;
 	}
 }
