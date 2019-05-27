@@ -1,6 +1,7 @@
 package coolsquid.hungertweaker.ct.regen;
 
 import coolsquid.hungertweaker.util.Expression;
+import coolsquid.hungertweaker.util.Util;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.data.IData;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
@@ -21,7 +22,7 @@ public class CTPeacefulRegen {
 	}
 
 	@ZenMethod
-	public static void setStatus(int v) {
-		status = Result.values()[v];
+	public static void setStatus(IData v) {
+		status = Util.parseResult(v);
 	}
 }

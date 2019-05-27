@@ -1,7 +1,9 @@
 package coolsquid.hungertweaker.ct;
 
 import coolsquid.hungertweaker.ClientEventHandler;
+import coolsquid.hungertweaker.util.Util;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.data.IData;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -14,8 +16,8 @@ public class CTHUD {
 	public static Result status = Result.DEFAULT;
 
 	@ZenMethod
-	public static void setStatus(int v) {
-		Result newStatus = Result.values()[v];
+	public static void setStatus(IData v) {
+		Result newStatus = Util.parseResult(v);
 		if (newStatus != status) {
 			if (status == Result.DEFAULT) {
 				MinecraftForge.EVENT_BUS.unregister(ClientEventHandler.class);
