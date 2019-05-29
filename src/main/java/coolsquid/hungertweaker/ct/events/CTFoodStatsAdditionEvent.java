@@ -21,26 +21,26 @@ public class CTFoodStatsAdditionEvent implements IPlayerEvent, IEventCancelable 
 
 	@ZenGetter
 	public int hunger() {
-		return internal.foodValuesToBeAdded.hunger;
+		return this.internal.foodValuesToBeAdded.hunger;
 	}
 
 	@ZenGetter
 	public float saturationModifier() {
-		return internal.foodValuesToBeAdded.saturationModifier;
+		return this.internal.foodValuesToBeAdded.saturationModifier;
 	}
 
 	@Override
 	public IPlayer getPlayer() {
-		return CraftTweakerMC.getIPlayer(internal.player);
+		return CraftTweakerMC.getIPlayer(this.internal.player);
 	}
 
 	@Override
 	public boolean isCanceled() {
-		return internal.isCanceled();
+		return this.internal.isCanceled();
 	}
 
 	@Override
 	public void setCanceled(boolean canceled) {
-		internal.setCanceled(canceled);
+		this.internal.setCanceled(canceled);
 	}
 }

@@ -21,7 +21,8 @@ public class HungerTweaker {
 
 	@Mod.EventHandler
 	public void onPreInit(FMLPreInitializationEvent event) {
-		// Must be done in pre-init, otherwise the getters in CTFoodValues won't work properly when scripts are executed
+		// Must be done in pre-init, otherwise the getters in CTFoodValues won't work
+		// properly when scripts are executed
 		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
 	}
 }
