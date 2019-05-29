@@ -62,6 +62,25 @@ public class CTFoodValues {
 		}
 	}
 
+	@ZenGetter("unmodifiedHunger")
+	public int getUnmodifiedHunger() {
+		if (this.ingredient instanceof IItemStack) {
+			return AppleCoreAPI.accessor.getUnmodifiedFoodValues(CraftTweakerMC.getItemStack(this.ingredient)).hunger;
+		} else {
+			throw new RuntimeException("Can only retrieve the hunger value of individual item stacks");
+		}
+	}
+
+	@ZenGetter("unmodifiedSaturationModifier")
+	public float getUnmodifiedSaturationModifier() {
+		if (this.ingredient instanceof IItemStack) {
+			return AppleCoreAPI.accessor
+					.getUnmodifiedFoodValues(CraftTweakerMC.getItemStack(this.ingredient)).saturationModifier;
+		} else {
+			throw new RuntimeException("Can only retrieve the saturation value of individual item stacks");
+		}
+	}
+
 	static CTFoodValues get(IIngredient i) {
 		CTFoodValues in = MAP.get(i);
 		if (in == null) {
