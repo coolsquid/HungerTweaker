@@ -42,7 +42,8 @@ public class ModEventHandler {
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void on(FoodEvent.GetFoodValues ie) {
-		for (CTFoodValues v : CTFoodValues.LIST) {
+		for (int index = 0; index < CTFoodValues.LIST.size(); index++) {
+			CTFoodValues v = CTFoodValues.LIST.get(index);
 			if (v.ingredient.matches(CraftTweakerMC.getIItemStack(ie.food))) {
 				int hunger = (int) (v.hunger == null ? ie.foodValues.hunger : v.hunger.execute(ie.foodValues.hunger));
 				float saturationModifier = (float) (v.saturationModifier == null ? ie.foodValues.saturationModifier
