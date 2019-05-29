@@ -128,17 +128,11 @@ public interface Expression {
 					final double d = Double.parseDouble(str.substring(startPos, this.pos));
 					e = (x) -> d;
 				} else if (ch >= 'a' && ch <= 'z') { // functions
-					if (ch == 'x') {
-						e = (x) -> x;
+					while (ch >= 'a' && ch <= 'z') {
 						nextChar();
-					} else {
-						while (ch >= 'a' && ch <= 'z') {
-							nextChar();
-						}
-						final String func = str.substring(startPos, this.pos);
-						if (!eat('(')) {
-							throw new RuntimeException("Expected '(' at index " + pos);
-						}
+					}
+					final String func = str.substring(startPos, this.pos);
+					if (eat('(')) {
 						if (func.equals("random")) {
 							if (eat(')')) {
 								e = (x) -> Math.random();
@@ -194,6 +188,12 @@ public interface Expression {
 							if (!eat(')')) {
 								throw new RuntimeException("Expected ')' at index " + pos);
 							}
+						}
+					} else {
+						if (func.equals("x")) {
+							e = (x) -> x;
+						} else {
+							throw new RuntimeException("Expected '(' at index " + pos);
 						}
 					}
 				} else {
