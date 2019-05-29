@@ -13,7 +13,7 @@ import crafttweaker.api.data.IData;
  */
 public interface Expression {
 
-	double execute(double x);
+	double eval(double x);
 
 	public static Expression parse(final IData data) {
 		if (Util.isNumber(data)) {
@@ -69,11 +69,11 @@ public interface Expression {
 				for (;;) {
 					if (eat('+')) {
 						final Expression a = e, b = parseTerm();
-						e = (x) -> a.execute(x) + b.execute(x);
+						e = (x) -> a.eval(x) + b.eval(x);
 					} // addition
 					else if (eat('-')) {
 						final Expression a = e, b = parseTerm();
-						e = (x) -> a.execute(x) - b.execute(x);
+						e = (x) -> a.eval(x) - b.eval(x);
 					} // subtraction
 					else {
 						return e;
@@ -86,11 +86,11 @@ public interface Expression {
 				for (;;) {
 					if (eat('*')) {
 						final Expression a = e, b = parseFactor();
-						e = (x) -> a.execute(x) * b.execute(x);
+						e = (x) -> a.eval(x) * b.eval(x);
 					} // multiplication
 					else if (eat('/')) {
 						final Expression a = e, b = parseFactor();
-						e = (x) -> a.execute(x) / b.execute(x);
+						e = (x) -> a.eval(x) / b.eval(x);
 					} // division
 					else {
 						return e;
@@ -111,7 +111,7 @@ public interface Expression {
 				}
 				if (eat('-')) {
 					final Expression e = parseFactor();
-					return (x) -> -e.execute(x); // unary minus
+					return (x) -> -e.eval(x); // unary minus
 				}
 
 				Expression e;
@@ -140,7 +140,7 @@ public interface Expression {
 								e = parseExpression();
 								final Expression a = e;
 								final Random random = new Random();
-								e = (x) -> random.nextInt((int) a.execute(x));
+								e = (x) -> random.nextInt((int) a.eval(x));
 								if (!eat(')')) {
 									throw new RuntimeException("Expected ')' at index " + pos);
 								}
@@ -149,32 +149,32 @@ public interface Expression {
 							e = parseExpression();
 							final Expression a = e;
 							if (func.equals("sqrt")) {
-								e = (x) -> Math.sqrt(a.execute(x));
+								e = (x) -> Math.sqrt(a.eval(x));
 							} else if (func.equals("sin")) {
-								e = (x) -> Math.sin(Math.toRadians(a.execute(x)));
+								e = (x) -> Math.sin(Math.toRadians(a.eval(x)));
 							} else if (func.equals("cos")) {
-								e = (x) -> Math.cos(Math.toRadians(a.execute(x)));
+								e = (x) -> Math.cos(Math.toRadians(a.eval(x)));
 							} else if (func.equals("tan")) {
-								e = (x) -> Math.tan(Math.toRadians(a.execute(x)));
+								e = (x) -> Math.tan(Math.toRadians(a.eval(x)));
 							} else if (func.equals("round")) {
-								e = (x) -> Math.round(a.execute(x));
+								e = (x) -> Math.round(a.eval(x));
 							} else if (func.equals("ceil")) {
-								e = (x) -> Math.ceil(a.execute(x));
+								e = (x) -> Math.ceil(a.eval(x));
 							} else if (func.equals("nextUp")) {
-								e = (x) -> Math.nextUp(a.execute(x));
+								e = (x) -> Math.nextUp(a.eval(x));
 							} else if (func.equals("nextDown")) {
-								e = (x) -> Math.nextDown(a.execute(x));
+								e = (x) -> Math.nextDown(a.eval(x));
 							} else if (func.equals("max")) {
 								final Expression b = nextParameter();
-								e = (x) -> Math.max(a.execute(x), b.execute(x));
+								e = (x) -> Math.max(a.eval(x), b.eval(x));
 							} else if (func.equals("min")) {
 								final Expression b = nextParameter();
-								e = (x) -> Math.min(a.execute(x), b.execute(x));
+								e = (x) -> Math.min(a.eval(x), b.eval(x));
 							} else if (func.equals("clamp")) {
 								final Expression b = nextParameter();
 								final Expression c = nextParameter();
 								e = (x) -> {
-									final double aa = a.execute(x), bb = b.execute(x), cc = c.execute(x);
+									final double aa = a.eval(x), bb = b.eval(x), cc = c.eval(x);
 									if (aa < bb) {
 										return bb;
 									} else if (aa > cc) {
@@ -202,7 +202,7 @@ public interface Expression {
 
 				if (eat('^')) {
 					final Expression a = e, b = parseFactor();
-					e = (x) -> Math.pow(a.execute(x), b.execute(x)); // exponentiation
+					e = (x) -> Math.pow(a.eval(x), b.eval(x)); // exponentiation
 				}
 
 				return e;
