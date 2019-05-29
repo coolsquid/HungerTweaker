@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = HungerTweaker.MODID, name = HungerTweaker.NAME, version = HungerTweaker.VERSION,
 		dependencies = HungerTweaker.DEPENDENCIES, updateJSON = HungerTweaker.UPDATE_JSON)
@@ -20,7 +20,8 @@ public class HungerTweaker {
 	public static final Logger LOGGER = LogManager.getFormatterLogger(NAME);
 
 	@Mod.EventHandler
-	public void onInit(FMLInitializationEvent event) {
+	public void onPreInit(FMLPreInitializationEvent event) {
+		// Must be done in pre-init, otherwise the getters in CTFoodValues won't work properly when scripts are executed
 		MinecraftForge.EVENT_BUS.register(new ModEventHandler());
 	}
 }
