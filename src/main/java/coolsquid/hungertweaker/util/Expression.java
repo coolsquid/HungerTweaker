@@ -110,7 +110,8 @@ public interface Expression {
 					return parseFactor(); // unary plus
 				}
 				if (eat('-')) {
-					return (x) -> -parseFactor().execute(x); // unary minus
+					final Expression e = parseFactor();
+					return (x) -> -e.execute(x); // unary minus
 				}
 
 				Expression e;
