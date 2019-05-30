@@ -42,13 +42,15 @@ public class ModEventHandler {
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void on(FoodEvent.GetFoodValues ie) {
-		for (int index = 0; index < CTFoodValues.LIST.size(); index++) {
+		for (int index = CTFoodValues.LIST.size() - 1; index >= 0; index--) {
 			CTFoodValues v = CTFoodValues.LIST.get(index);
-			if (v.ingredient.matches(CraftTweakerMC.getIItemStack(ie.food))) {
+			if ((v.hunger != null || v.saturationModifier != null)
+					&& v.ingredient.matches(CraftTweakerMC.getIItemStack(ie.food))) {
 				int hunger = (int) (v.hunger == null ? ie.foodValues.hunger : v.hunger.eval(ie.foodValues.hunger));
 				float saturationModifier = (float) (v.saturationModifier == null ? ie.foodValues.saturationModifier
 						: v.saturationModifier.eval(ie.foodValues.saturationModifier));
 				ie.foodValues = new FoodValues(hunger, saturationModifier);
+				break;
 			}
 		}
 	}
