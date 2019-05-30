@@ -10,7 +10,7 @@ import stanhebben.zenscript.annotations.ZenGetter;
 public class CTIIngredientExt {
 
 	@ZenGetter("foodValues")
-	public static CTFoodValues getFoodInfo(IIngredient ingredient) {
+	public static CTFoodValues getFoodValues(IIngredient ingredient) {
 		return CTFoodValues.get(ingredient);
 	}
 }
