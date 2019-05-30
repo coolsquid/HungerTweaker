@@ -5,12 +5,6 @@ import java.util.Random;
 import crafttweaker.api.data.DataString;
 import crafttweaker.api.data.IData;
 
-/**
- * Borrowed from https://stackoverflow.com/a/26227947
- *
- * Modified to support an unknown variable and functions with multiple
- * parameters.
- */
 public interface Expression {
 
 	double eval(double x);
@@ -26,6 +20,16 @@ public interface Expression {
 		}
 	}
 
+	/**
+	 * Borrowed from <a href=
+	 * "https://stackoverflow.com/a/26227947">https://stackoverflow.com/a/26227947</a>.
+	 * <br>
+	 * Modified to support unknown variables and functions with multiple parameters.
+	 * <br>
+	 * Handles basic operations such as addition, subtraction, multiplication,
+	 * division, parentheses and exponentiation, as well as a number of advanced
+	 * functions.
+	 */
 	public static Expression parse(final String str) {
 		return new Object() {
 			int pos = -1;
