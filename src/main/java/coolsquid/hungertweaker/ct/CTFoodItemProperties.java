@@ -25,17 +25,17 @@ public class CTFoodItemProperties {
 
 	@ZenGetter("alwaysEdible")
 	public boolean isAlwaysEdible() {
-		return ObfuscationReflectionHelper.getPrivateValue(ItemFood.class, itemFood, "field_77852_bZ");
+		return ObfuscationReflectionHelper.getPrivateValue(ItemFood.class, this.itemFood, "field_77852_bZ");
 	}
 
 	@ZenSetter("alwaysEdible")
 	public void setAlwaysEdible(boolean b) {
-		ObfuscationReflectionHelper.setPrivateValue(ItemFood.class, itemFood, b, "field_77852_bZ");
+		ObfuscationReflectionHelper.setPrivateValue(ItemFood.class, this.itemFood, b, "field_77852_bZ");
 	}
 
 	@ZenGetter("wolfFood")
 	public boolean isWolfFood() {
-		return ObfuscationReflectionHelper.getPrivateValue(ItemFood.class, itemFood, "field_77856_bY");
+		return ObfuscationReflectionHelper.getPrivateValue(ItemFood.class, this.itemFood, "field_77856_bY");
 	}
 
 	@ZenSetter("wolfFood")
@@ -46,7 +46,7 @@ public class CTFoodItemProperties {
 			Field modField = Field.class.getDeclaredField("modifiers");
 			modField.setAccessible(true);
 			modField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-			field.set(itemFood, b);
+			field.set(this.itemFood, b);
 		} catch (ReflectiveOperationException e) {
 			throw new RuntimeException(e);
 		}
@@ -54,26 +54,26 @@ public class CTFoodItemProperties {
 
 	@ZenGetter("effect")
 	public IPotionEffect getEffect() {
-		return CraftTweakerMC.getIPotionEffect(getEffectInternal());
+		return CraftTweakerMC.getIPotionEffect(this.getEffectInternal());
 	}
 
 	@ZenSetter("effect")
 	public void setEffect(IPotionEffect effect) {
-		float probability = getEffectInternal() == null ? 1 : getEffectProbability();
-		itemFood.setPotionEffect(CraftTweakerMC.getPotionEffect(effect), probability);
+		float probability = this.getEffectInternal() == null ? 1 : this.getEffectProbability();
+		this.itemFood.setPotionEffect(CraftTweakerMC.getPotionEffect(effect), probability);
 	}
 
 	@ZenGetter("effectProbability")
 	public float getEffectProbability() {
-		return ObfuscationReflectionHelper.getPrivateValue(ItemFood.class, itemFood, "potionEffectProbability");
+		return ObfuscationReflectionHelper.getPrivateValue(ItemFood.class, this.itemFood, "potionEffectProbability");
 	}
 
 	@ZenSetter("effectProbability")
 	public void getEffectProbability(float f) {
-		itemFood.setPotionEffect(getEffectInternal(), f);
+		this.itemFood.setPotionEffect(this.getEffectInternal(), f);
 	}
 
 	private PotionEffect getEffectInternal() {
-		return ObfuscationReflectionHelper.getPrivateValue(ItemFood.class, itemFood, "potionId");
+		return ObfuscationReflectionHelper.getPrivateValue(ItemFood.class, this.itemFood, "potionId");
 	}
 }
