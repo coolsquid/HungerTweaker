@@ -28,11 +28,27 @@ public class Util {
 			case 2:
 				return Result.ALLOW;
 			}
-			throw new IllegalArgumentException("Unknown status/result: " + index);
+			throw new IllegalArgumentException(
+					"Unknown status/result: " + index + ". Possible values are: 0, 1 and 2.");
 		} else if (data instanceof DataString) {
-			return Result.valueOf(data.asString().toUpperCase());
+			try {
+				return Result.valueOf(data.asString().toUpperCase());
+			} catch (IllegalArgumentException e) {
+				StringBuilder values = new StringBuilder();
+				if (Result.values().length > 0) {
+					values.append('\'').append(Result.values()[0].name()).append('\'');
+					if (Result.values().length > 1) {
+						for (int i = 1; i < Result.values().length - 1; i++) {
+							values.append(", '").append(Result.values()[i].name()).append('\'');
+						}
+						values.append(" and '").append(Result.values()[Result.values().length - 1].name()).append('\'');
+					}
+				}
+				throw new IllegalArgumentException("Unknown status/result: '" + data.asString()
+						+ "'. Possible values are: " + values.toString() + ".", e);
+			}
 		} else {
-			throw new IllegalArgumentException("The argument must be a string or a number");
+			throw new IllegalArgumentException("The argument must be a string or a number.");
 		}
 	}
 }
