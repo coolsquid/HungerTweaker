@@ -13,7 +13,7 @@ public class HungerTweaker {
 
 	public static final String MODID = "hungertweaker";
 	public static final String NAME = "HungerTweaker";
-	public static final String VERSION = "1.1.0";
+	public static final String VERSION = "1.2.0";
 	public static final String DEPENDENCIES = "required-after:crafttweaker@[4.0.0,);required-after:applecore@[3.2.0,)";
 	public static final String UPDATE_JSON = "";
 
