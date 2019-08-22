@@ -13,8 +13,10 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class CTPeacefulRegen {
 
 	public static Expression deltaHealth;
+	public static Expression deltaHunger;
 
-	public static Result status = Result.DEFAULT;
+	public static Result healthStatus = Result.DEFAULT;
+	public static Result hungerStatus = Result.DEFAULT;
 
 	@ZenMethod
 	public static void setDeltaHealth(IData v) {
@@ -22,7 +24,26 @@ public class CTPeacefulRegen {
 	}
 
 	@ZenMethod
+	public static void setDeltaHunger(IData v) {
+		deltaHunger = Expression.parse(v);
+	}
+
+	/**
+	 * Use {@link #setHealthStatus(IData)} instead!
+	 */
+	@Deprecated
+	@ZenMethod
 	public static void setStatus(IData v) {
-		status = Util.parseResult(v);
+		healthStatus = Util.parseResult(v);
+	}
+
+	@ZenMethod
+	public static void setHealthStatus(IData v) {
+		healthStatus = Util.parseResult(v);
+	}
+
+	@ZenMethod
+	public static void setHungerStatus(IData v) {
+		hungerStatus = Util.parseResult(v);
 	}
 }

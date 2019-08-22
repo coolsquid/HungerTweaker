@@ -17,6 +17,7 @@ import coolsquid.hungertweaker.ct.events.CTGetMaxHungerEvent;
 import coolsquid.hungertweaker.ct.events.CTGetRegenTickPeriodEvent;
 import coolsquid.hungertweaker.ct.events.CTGetSaturatedRegenTickPeriodEvent;
 import coolsquid.hungertweaker.ct.events.CTGetStarveTickPeriodEvent;
+import coolsquid.hungertweaker.ct.events.CTPeacefulHungerRegenEvent;
 import coolsquid.hungertweaker.ct.events.CTPeacefulRegenEvent;
 import coolsquid.hungertweaker.ct.events.CTRegenEvent;
 import coolsquid.hungertweaker.ct.events.CTSaturatedRegenEvent;
@@ -36,6 +37,7 @@ import squeek.applecore.api.food.FoodValues;
 import squeek.applecore.api.hunger.ExhaustionEvent;
 import squeek.applecore.api.hunger.HealthRegenEvent;
 import squeek.applecore.api.hunger.HungerEvent;
+import squeek.applecore.api.hunger.HungerRegenEvent;
 import squeek.applecore.api.hunger.StarvationEvent;
 
 public class ModEventHandler {
@@ -208,8 +210,10 @@ public class ModEventHandler {
 		if (CTPeacefulRegen.deltaHealth != null) {
 			ie.deltaHealth = (float) CTPeacefulRegen.deltaHealth.eval(ie.deltaHealth);
 		}
-		if (CTPeacefulRegen.status != Result.DEFAULT) {
-			ie.setResult(CTPeacefulRegen.status);
+		if (CTPeacefulRegen.healthStatus == Result.ALLOW) {
+			ie.setCanceled(false);
+		} else if (CTPeacefulRegen.healthStatus == Result.DENY) {
+			ie.setCanceled(true);
 		}
 		if (HungerEventManager.PEACEFUL_REGEN.hasHandlers()) {
 			HungerEventManager.PEACEFUL_REGEN.publish(new CTPeacefulRegenEvent(ie));
@@ -239,6 +243,21 @@ public class ModEventHandler {
 		}
 		if (HungerEventManager.SATURATED_REGEN.hasHandlers()) {
 			HungerEventManager.SATURATED_REGEN.publish(new CTSaturatedRegenEvent(ie));
+		}
+	}
+
+	@SubscribeEvent(priority = EventPriority.LOWEST)
+	public void on(HungerRegenEvent.PeacefulRegen ie) {
+		if (CTPeacefulRegen.deltaHunger != null) {
+			ie.deltaHunger = (int) CTPeacefulRegen.deltaHunger.eval(ie.deltaHunger);
+		}
+		if (CTPeacefulRegen.hungerStatus == Result.ALLOW) {
+			ie.setCanceled(false);
+		} else if (CTPeacefulRegen.hungerStatus == Result.DENY) {
+			ie.setCanceled(true);
+		}
+		if (HungerEventManager.PEACEFUL_HUNGER_REGEN.hasHandlers()) {
+			HungerEventManager.PEACEFUL_HUNGER_REGEN.publish(new CTPeacefulHungerRegenEvent(ie));
 		}
 	}
 }
