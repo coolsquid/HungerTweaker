@@ -268,7 +268,7 @@ public class ModEventHandler {
 
 		@SubscribeEvent(priority = EventPriority.LOWEST)
 		public void on(PlayerTickEvent event) {
-			if (CTExhaustion.constantExhaustionIncrease > 0) {
+			if (CTExhaustion.constantExhaustionIncrease != 0) {
 				event.player.getFoodStats().addExhaustion(CTExhaustion.constantExhaustionIncrease);
 			}
 		}

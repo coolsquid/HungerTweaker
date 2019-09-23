@@ -32,7 +32,7 @@ public class CTExhaustion {
 	@ZenMethod
 	public static void setConstantExhaustionIncrease(IData v) {
 		constantExhaustionIncrease = v.asFloat();
-		if (constantExhaustionIncrease > 0) {
+		if (constantExhaustionIncrease != 0) {
 			if (TickHandler.instance == null) {
 				TickHandler.instance = new TickHandler();
 				MinecraftForge.EVENT_BUS.register(TickHandler.instance);
