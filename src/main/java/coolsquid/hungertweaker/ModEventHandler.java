@@ -32,6 +32,7 @@ import crafttweaker.api.minecraft.CraftTweakerMC;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import squeek.applecore.api.food.FoodEvent;
 import squeek.applecore.api.food.FoodValues;
 import squeek.applecore.api.hunger.ExhaustionEvent;
@@ -258,6 +259,18 @@ public class ModEventHandler {
 		}
 		if (HungerEventManager.PEACEFUL_HUNGER_REGEN.hasHandlers()) {
 			HungerEventManager.PEACEFUL_HUNGER_REGEN.publish(new CTPeacefulHungerRegenEvent(ie));
+		}
+	}
+
+	public static class TickHandler {
+
+		public static TickHandler instance;
+
+		@SubscribeEvent(priority = EventPriority.LOWEST)
+		public void on(PlayerTickEvent event) {
+			if (CTExhaustion.constantExhaustionIncrease > 0) {
+				event.player.getFoodStats().addExhaustion(CTExhaustion.constantExhaustionIncrease);
+			}
 		}
 	}
 }
